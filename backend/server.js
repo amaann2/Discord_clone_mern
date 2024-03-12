@@ -11,7 +11,7 @@ const PORT = process.env.PORT || process.env.API_PORT;
 const app = express();
 
 app.use(express.json());
-app.use(cors());
+app.use(cors({ origin: "http://localhost:5173" }));
 app.use("/api/v1/auth", authRoutes);
 
 const server = http.createServer(app);
