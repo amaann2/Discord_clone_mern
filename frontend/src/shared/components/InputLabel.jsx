@@ -23,7 +23,8 @@ const Input = styled('input')({
   background: '#35393f',
   margin: 0,
   fontSize: '16px',
-  padding: '0 5px'
+  padding: '0 5px',
+  marginTop: '5px'
 
 })
 const InputLabel = (props) => {
@@ -33,7 +34,7 @@ const InputLabel = (props) => {
   }
   return (
     <Wrapper>
-      <Label>{label}</Label>
+      <Label style={{ margin: '2px' }}>{label}</Label>
       <Input
         value={value}
         onChange={handleValueOnchange}
