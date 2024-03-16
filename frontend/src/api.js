@@ -42,7 +42,17 @@ export const register = async (data) => {
 };
 
 // secure routes
-
+export const sendFriendsInvitation = async (data) => {
+  try {
+    return await apiClient.post("/friend-invitation/invite", data);
+  } catch (exception) {
+    checkResponseCode();
+    return {
+      error: true,
+      exception,
+    };
+  }
+};
 const checkResponseCode = (exception) => {
   const responseCode = exception?.response?.status;
 

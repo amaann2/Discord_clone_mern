@@ -2,9 +2,13 @@ const express = require("express");
 const http = require("http");
 const cors = require("cors");
 const mongoose = require("mongoose");
+
+const socketServer = require("./socketServer");
+
 require("dotenv").config();
 
 const authRoutes = require("./routes/authRoutes");
+const friendInvitationRoutes = require("./routes/friendInvitationRoutes");
 
 const PORT = process.env.PORT || process.env.API_PORT;
 
@@ -12,9 +16,12 @@ const app = express();
 
 app.use(express.json());
 app.use(cors({ origin: "http://localhost:5173" }));
+
 app.use("/api/v1/auth", authRoutes);
+app.use("/api/v1/friend-invitation", friendInvitationRoutes);
 
 const server = http.createServer(app);
+socketServer.registerSocketServer(server);
 
 mongoose
   .connect(process.env.MONGO_URI)

@@ -7,13 +7,14 @@ import { useEffect } from 'react'
 import { logout } from '../shared/utils/auth'
 import { connect } from 'react-redux'
 import { getActions } from '../store/actions/authActions'
+import { connectWithSocketServer } from '../realTimeCommunication/socketConnection'
 
 const Wrapper = styled('div')({
     width: '100%',
     height: '100vh',
     display: 'flex'
 })
-const Dashboard = ({setUserDetails}) => {
+const Dashboard = ({ setUserDetails }) => {
 
     useEffect(() => {
         const userDetails = localStorage.getItem('user')
@@ -22,6 +23,7 @@ const Dashboard = ({setUserDetails}) => {
             logout()
         } else {
             setUserDetails(JSON.parse(userDetails))
+            connectWithSocketServer(JSON.parse(userDetails))
         }
     }, [])
     return (
