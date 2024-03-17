@@ -1,30 +1,23 @@
 import { styled } from "@mui/system"
 import FriendListItem from "./FriendListItem"
-const DUMMY_FRIENDS = [
-    {
-        id: 1,
-        username: 'Mark',
-        isOnline: false
-    },
-    {
-        id: 2,
-        username: 'Anna',
-        isOnline: true
-    },
-    {
-        id: 3,
-        username: 'John',
-        isOnline: false
-    },
-]
+import { connect } from 'react-redux'
+
 const MainContainer = styled('div')({
     flexGrow: 1,
     width: '100%'
 })
-const FriendsList = () => {
+const FriendsList = ({ friendsList, onlineUsers }) => {
+    const checkOnlineUsers = (friendsList = [], onlineUsers = []) => {
+        friendsList.forEach(f => {
+            const isUserOnline = onlineUsers.find(user => user.userId === f.id)
+            f.isOnline = isUserOnline ? true : false
+        })
+
+        return friendsList
+    }
     return (
         <MainContainer>
-            {DUMMY_FRIENDS.map((f) => (
+            {checkOnlineUsers(friendsList, onlineUsers)?.map((f) => (
                 <FriendListItem
                     username={f.username}
                     id={f.id}
@@ -36,4 +29,10 @@ const FriendsList = () => {
     )
 }
 
-export default FriendsList
+const mapActionsToProps = ({ friends }) => {
+    return {
+        ...friends,
+
+    }
+}
+export default connect(mapActionsToProps)(FriendsList)

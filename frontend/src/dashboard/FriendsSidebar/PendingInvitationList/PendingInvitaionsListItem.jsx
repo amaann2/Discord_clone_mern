@@ -2,6 +2,9 @@ import React, { useState } from 'react'
 import { Box, Tooltip, Typography } from '@mui/material'
 import Avatar from '../../../shared/components/Avatar'
 import InvitationDecisionButtons from './InvitationDecisionButtons'
+import { connect } from 'react-redux'
+import { getActions } from '../../../store/actions/friendsAction'
+
 const PendingInvitaionsListItem = (
     {
         username,
@@ -13,10 +16,13 @@ const PendingInvitaionsListItem = (
 ) => {
     const [buttonDisabled, setButtonDisabled] = useState(false)
     const handleAcceptInvitation = () => {
+        console.log(id)
         acceptFriendInvitaion({ id })
         setButtonDisabled(true)
     }
     const handleRejectInvitation = () => {
+        console.log(id)
+
         rejectFriendInvitaion({ id })
         setButtonDisabled(true)
     }
@@ -56,4 +62,9 @@ const PendingInvitaionsListItem = (
     )
 }
 
-export default PendingInvitaionsListItem
+const mapActionsToProps = (dispatch) => {
+    return {
+        ...getActions(dispatch)
+    }
+}
+export default connect(null, mapActionsToProps)(PendingInvitaionsListItem)
