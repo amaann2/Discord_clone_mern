@@ -32,6 +32,8 @@ export const setOnlineUsers = (onlineUsers) => {
     onlineUsers,
   };
 };
+
+// invite a friends
 const sendFriendsInvitation = (data, closeDialogHandler) => {
   return async (dispatch) => {
     const res = await api.sendFriendsInvitation(data);
@@ -45,6 +47,7 @@ const sendFriendsInvitation = (data, closeDialogHandler) => {
   };
 };
 
+// accept invitation of  a friend
 const acceptFriendInvitaion = (data) => {
   return async (dispatch) => {
     const res = await api.acceptFriendInvitaion(data);
@@ -55,6 +58,8 @@ const acceptFriendInvitaion = (data) => {
     }
   };
 };
+
+// reject invitation of friend
 const rejectFriendInvitaion = (data) => {
   return async (dispatch) => {
     const res = await api.rejectFriendInvitaion(data);

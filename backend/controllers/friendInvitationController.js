@@ -36,7 +36,7 @@ exports.inviteFriends = async (req, res) => {
     return res.status(409).send("Invitation has been already sent");
   }
 
-  // check if the user which we would like to invite is alreayd our friends
+  // check if the user which we would like to invite is already our friends
   const usersAlreadyFriends = targetUser.friends.find(
     (friendId) => friendId.toString() === userId.toString()
   );

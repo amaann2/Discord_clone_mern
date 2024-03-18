@@ -3,9 +3,18 @@ import Button from '@mui/material/Button'
 import Avatar from '../../../shared/components/Avatar'
 import { Typography } from '@mui/material'
 import OnlineIndicator from './OnlineIndicator'
+import { ChatTypes, setChosenChatDetails } from '../../../store/actions/chatActions'
+import { useDispatch } from 'react-redux'
+
 const FriendListItem = ({ username, id, isOnline }) => {
+    const dispatch = useDispatch()
+
+    const handleChooseActiveConverstaion = () => {
+        dispatch(setChosenChatDetails({ id: id, name: username }, ChatTypes.DIRECT))
+    }
     return (
         <Button
+            onClick={handleChooseActiveConverstaion}
             style={{
                 width: '100%',
                 height: '42px',
@@ -16,6 +25,7 @@ const FriendListItem = ({ username, id, isOnline }) => {
                 textTransform: 'none',
                 color: 'black',
                 position: 'relative'
+
             }}
         >
             <Avatar username={username} />
@@ -30,7 +40,7 @@ const FriendListItem = ({ username, id, isOnline }) => {
             >
                 {username}
             </Typography>
-            {isOnline && <OnlineIndicator /> }
+            {isOnline && <OnlineIndicator />}
         </Button>
     )
 }
