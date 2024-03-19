@@ -5,6 +5,7 @@ import {
   setOnlineUsers,
 } from "../store/actions/friendsAction";
 import store from "../store/store";
+import updateDirectChatHistoryIfActive from "../shared/utils/chat";
 let socket = null;
 export const connectWithSocketServer = (userDetails) => {
   const jwtToken = userDetails?.token;
@@ -32,4 +33,15 @@ export const connectWithSocketServer = (userDetails) => {
     const { onlineUsers } = data;
     store.dispatch(setOnlineUsers(onlineUsers));
   });
+  socket.on("direct-chat-history", (data) => {
+    updateDirectChatHistoryIfActive(data);
+  });
+};
+
+export const sendDirectMessage = (data) => {
+  socket.emit("direct-message", data);
+};
+
+export const getDirectChatHistory = (data) => {
+  socket.emit("direct-chat-history", data);
 };

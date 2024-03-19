@@ -38,6 +38,7 @@ exports.register = async (req, res) => {
         mail: user.mail,
         token: token,
         username: user.username,
+        _id: user._id,
       },
     });
   } catch (error) {
@@ -66,6 +67,7 @@ exports.login = async (req, res) => {
           mail: user.mail,
           token: token,
           username: user.username,
+          _id: user._id,
         },
       });
     }
