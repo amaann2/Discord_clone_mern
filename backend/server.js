@@ -16,7 +16,7 @@ const PORT = process.env.PORT || process.env.API_PORT;
 const app = express();
 
 app.use(express.json());
-app.use(cors({ origin: "http://localhost:5173" }));
+app.use(cors({ credentials: true }));
 app.use(express.static(path.join(__dirname, "dist")));
 app.use("/api/v1/auth", authRoutes);
 app.use("/api/v1/friend-invitation", friendInvitationRoutes);
