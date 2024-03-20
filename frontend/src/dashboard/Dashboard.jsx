@@ -5,9 +5,10 @@ import Messanger from './Messanger/Messanger'
 import AppBar from './AppBar/AppBar'
 import { useEffect } from 'react'
 import { logout } from '../shared/utils/auth'
-import { connect } from 'react-redux'
+import { connect, useSelector } from 'react-redux'
 import { getActions } from '../store/actions/authActions'
 import { connectWithSocketServer } from '../realTimeCommunication/socketConnection'
+import Room from './Room/Room'
 
 const Wrapper = styled('div')({
     width: '100%',
@@ -15,7 +16,7 @@ const Wrapper = styled('div')({
     display: 'flex'
 })
 const Dashboard = ({ setUserDetails }) => {
-
+    const { isUserInRoom } = useSelector(state => state.room )
     useEffect(() => {
         const userDetails = localStorage.getItem('user')
 
@@ -32,6 +33,7 @@ const Dashboard = ({ setUserDetails }) => {
             <FriendsSideBar />
             <Messanger />
             <AppBar />
+            {isUserInRoom && <Room />}
         </Wrapper>
     )
 }

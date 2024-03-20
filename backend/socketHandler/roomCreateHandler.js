@@ -6,6 +6,7 @@ exports.roomCreateHandler = async (socket) => {
   const userId = socket.user.userId;
 
   const roomDetails = addNewActiveRoom(userId, socketId);
+
   socket.emit("room-create", {
     roomDetails,
   });

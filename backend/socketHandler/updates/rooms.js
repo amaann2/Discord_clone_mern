@@ -1,4 +1,5 @@
 const serverStore = require("../../serverStore");
+
 exports.updateRooms = (toSpecifiedTargetid = null) => {
   const io = serverStore.getSocketServerInstance();
   const activeRooms = serverStore.getActiveRooms();
