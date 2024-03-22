@@ -53,6 +53,7 @@ const registerSocketServer = (server) => {
 
     socket.on("disconnect", () => {
       disconnectHandler(socket);
+      
     });
   });
 

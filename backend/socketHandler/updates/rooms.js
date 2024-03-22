@@ -1,10 +1,10 @@
 const serverStore = require("../../serverStore");
 
-exports.updateRooms = (toSpecifiedTargetid = null) => {
+exports.updateRooms = (toSpecifiedSocketid = null) => {
   const io = serverStore.getSocketServerInstance();
   const activeRooms = serverStore.getActiveRooms();
-  if (toSpecifiedTargetid) {
-    io.to(toSpecifiedTargetid).emit("active-rooms", {
+  if (toSpecifiedSocketid) {
+    io.to(toSpecifiedSocketid).emit("active-rooms", {
       activeRooms,
     });
   } else {
