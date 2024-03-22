@@ -15,7 +15,7 @@ const MainContainer = styled('div')({
 })
 const SideBar = () => {
     const { activeRooms, isUserInRoom } = useSelector(state => state.room)
-
+    
     return (
         <MainContainer>
             <MainPageButton />

@@ -1,11 +1,11 @@
 import { IconButton } from '@mui/material'
 import { useState } from 'react'
 import CloseIcon from '@mui/icons-material/Close'
+import { leaveRoom } from '../../../realTimeCommunication/roomHandler'
 const CloseButton = () => {
-    const [cameraEnabled, setCameraEnabled] = useState(true)
 
     const handleLeaveRoom = () => {
-        setCameraEnabled(!cameraEnabled)
+        leaveRoom()
     }
     return (
         <IconButton onClick={handleLeaveRoom} style={{ color: 'white' }}>
