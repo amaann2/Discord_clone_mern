@@ -17,15 +17,14 @@ const app = express();
 
 app.use(express.json());
 app.use(cors({ credentials: true }));
-app.use(express.static(path.join(__dirname, "dist")));
-
+// app.use(express.static(path.join(__dirname, "dist")));
 
 app.use("/api/v1/auth", authRoutes);
 app.use("/api/v1/friend-invitation", friendInvitationRoutes);
 
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "dist", "index.html"));
-});
+// app.get("*", (req, res) => {
+//   res.sendFile(path.join(__dirname, "dist", "index.html"));
+// });
 const server = http.createServer(app);
 socketServer.registerSocketServer(server);
 
