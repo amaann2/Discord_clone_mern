@@ -4,6 +4,7 @@ import CameraButton from "./CameraButton";
 import CloseButton from "./CloseButton";
 import MicButton from "./MicButton";
 import ScreenShareButton from "./ScreenShareButton";
+import { useSelector } from "react-redux";
 const MainContainer = styled("div")({
   height: "15%",
   width: "100%",
@@ -15,12 +16,16 @@ const MainContainer = styled("div")({
   alignItems: "center",
 });
 const RoomButton = () => {
+  const { localStream, isUserJoinedWithOnlyAudio } = useSelector(
+    (state) => state.room
+  );
+
   return (
     <MainContainer>
-      <ScreenShareButton />
-      <MicButton />
+      {!isUserJoinedWithOnlyAudio && <ScreenShareButton />}
+      <MicButton localStream={localStream} />
       <CloseButton />
-      <CameraButton />
+      {!isUserJoinedWithOnlyAudio && <CameraButton localStream={localStream} />}
     </MainContainer>
   );
 };

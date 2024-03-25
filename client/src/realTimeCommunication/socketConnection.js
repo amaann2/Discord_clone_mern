@@ -7,7 +7,11 @@ import {
 import store from "../store/store";
 import updateDirectChatHistoryIfActive from "../shared/utils/chat";
 import { newRoomCreated, updateActiveRooms } from "./roomHandler";
-import { handleSignalingData, prepareNewPeerConnection } from "./webRTCHandler";
+import {
+  handleSignalingData,
+  prepareNewPeerConnection,
+  handleParticipantLeftRoom,
+} from "./webRTCHandler";
 
 let socket = null;
 export const connectWithSocketServer = (userDetails) => {
@@ -61,6 +65,10 @@ export const connectWithSocketServer = (userDetails) => {
 
   socket.on("conn-signal", (data) => {
     handleSignalingData(data);
+  });
+  socket.on("room-participant-left", (data) => {
+    console.log("user left room");
+    handleParticipantLeftRoom(data);
   });
 };
 

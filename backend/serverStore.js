@@ -50,9 +50,13 @@ const getActiveRoom = (roomId) => {
   const activeRoom = activeRooms.find(
     (activeroom) => activeroom.roomId === roomId
   );
-  return {
-    ...activeRoom,
-  };
+  if (activeRoom) {
+    return {
+      ...activeRoom,
+    };
+  } else {
+    return null;
+  }
 };
 const addNewActiveRoom = (userId, socketId) => {
   const newActiveRoom = {

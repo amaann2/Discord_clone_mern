@@ -95,3 +95,48 @@ const addNewRemoteStream = (remoteStream) => {
 
   store.dispatch(setRemoteStream(newRemoteStreams));
 };
+
+export const closeAllConnections = () => {
+  Object.entries(peers).forEach((mappedObject) => {
+    const connUserSocketId = mappedObject[0];
+    if (peers[connUserSocketId]) {
+      peers[connUserSocketId].destroy();
+      delete peers[connUserSocketId];
+    }
+  });
+};
+
+export const handleParticipantLeftRoom = (data) => {
+  const { connUserSocketId } = data;
+  if (peers[connUserSocketId]) {
+    peers[connUserSocketId].destroy();
+    delete peers[connUserSocketId];
+  }
+
+  const remoteStreams = store.getState().room.remoteStreams;
+
+  const newRemoteStreams = remoteStreams.filter(
+    (remoteStream) => remoteStream.connUserSocketId !== connUserSocketId
+  );
+
+  store.dispatch(setRemoteStream(newRemoteStreams));
+};
+export const switchOutgoingTracks = (stream) => {
+  for (let socket_id in peers) {
+    for (let index in peers[socket_id].streams[0].getTracks()) {
+      for (let index2 in stream.getTracks()) {
+        if (
+          peers[socket_id].streams[0].getTracks()[index].kind ===
+          stream.getTracks()[index2].kind
+        ) {
+          peers[socket_id].replaceTrack(
+            peers[socket_id].streams[0].getTracks()[index],
+            stream.getTracks()[index2],
+            peers[socket_id].streams[0]
+          );
+          break;
+        }
+      }
+    }
+  }
+};
