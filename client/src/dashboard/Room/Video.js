@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react'
 import { styled } from '@mui/system'
 const MainContainer = styled('div')({
-    height: '60%',
+    height: '50%',
     width: '50%',
     backgroundColor: 'black',
     borderRadius: '8px'
