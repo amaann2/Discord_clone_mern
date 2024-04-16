@@ -4,7 +4,6 @@ import { logout } from "./shared/utils/auth";
 const apiClient = axios.create({
   // baseURL: "http://localhost:5002/api/v1",
   baseURL: "https://videochatapp-b5bx.onrender.com/api/v1",
-  timeout: 1000,
 });
 apiClient.interceptors.request.use(
   (config) => {
