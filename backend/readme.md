@@ -1,6 +1,6 @@
-# Project setup guide
+# Project Setup Guide
 
-## Prerequisites
+## Prerequisites:
 
 Before getting started, ensure you have the following installed on your machine:
 
