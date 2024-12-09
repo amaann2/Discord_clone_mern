@@ -33,6 +33,13 @@ This project is a work in progress, and additional features will be added in the
 - Unfriend feature
 - Better UI
 
+## Screenshots
+
+![Screenshot 79](screenshot/Screenshot_80.png)
+![Screenshot 77](screenshot/Screenshot_81.png)
+![Screenshot 78](screenshot/Screenshot_82.png)
+![Screenshot 78](screenshot/Screenshot_83.png)
+
 ## Contribute or Share Ideas
 
 If you have any suggestions or feature ideas, feel free to reach out to me at ansari028amaan@gmail.com. Collaboration and feedback are always welcome.
